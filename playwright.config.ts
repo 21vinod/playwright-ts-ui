@@ -11,10 +11,11 @@ export default defineConfig<TestOptions>({
     toMatchSnapshot: {maxDiffPixels: 50}
   },
 
-  retries: 1,
+  fullyParallel:true,
+  //retries: 1,
   reporter: [
-    ['json', {outputFile: 'test-results/jsonReport.json'}],
-    ['junit', {outputFile: 'test-results/junitReport.xml'}],
+    // ['json', {outputFile: 'test-results/jsonReport.json'}],
+    // ['junit', {outputFile: 'test-results/junitReport.xml'}],
     // ['allure-playwright'],
     ['html']
   ],
@@ -35,15 +36,20 @@ export default defineConfig<TestOptions>({
   },
 
   projects: [
-    {
-      name: 'dev',
-      use: { 
-        ...devices['Desktop Chrome'],
-        baseURL: 'http://localhost:4200/'
-       },
-    },
+    // {
+    //   name: 'dev',
+    //   use: { 
+    //     ...devices['Desktop Chrome'],
+    //     baseURL: 'http://localhost:4200/'
+    //    }
+    // },
     {
       name: 'chromium',
+      use: { 
+        ...devices['Desktop Chrome'],}
+      //   baseURL: 'http://localhost:4200/'
+      //  },
+      //  fullyParallel:true
     },
     {
       name: 'firefox',

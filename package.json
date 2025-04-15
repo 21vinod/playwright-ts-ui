@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "pageObjects-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium",
+    "pageObjects-firefox": "npx playwright test usePageObjects.spec.ts --project=firefox",
+    "pageObjects-all": "npm run pageObjects-chrome && npm run pageObjects-firefox",
+    "autoWait-dev": "URL=http://uitestingplayground.com/ajax npx playwright test autoWaiting.spec.ts --project=chromium"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

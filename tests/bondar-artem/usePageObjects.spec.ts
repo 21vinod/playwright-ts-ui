@@ -23,7 +23,7 @@ test('parametrized methods @smoke', async({page}) => {
     const randomEmail = `${randomFullName.replace(' ', '')}${faker.number.int(1000)}@test.com`
 
     await pm.navigateTo().formLayoutsPage()
-    await pm.onFormLayoutsPage().submitUsingTheGrigdFormWithCredentialsAndSelectOption(process.env.USERNAME, process.env.PASSWORD, 'Option 2')
+    await pm.onFormLayoutsPage().submitUsingTheGrigdFormWithCredentialsAndSelectOption(process.env.USERNAME!, process.env.PASSWORD!, 'Option 2')
     // await page.screenshot({path: 'screenshots/formsLayoutsPage.png'})
     // const buffer = await page.screenshot()
     // console.log(buffer.toString('base64'))
