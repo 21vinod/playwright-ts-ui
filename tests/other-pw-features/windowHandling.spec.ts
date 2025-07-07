@@ -1,10 +1,15 @@
 import { test, expect, Browser as browser } from '@playwright/test';
 
-test.only('Handle multiple windows in Playwright', async ({ browser }) => {
+test('@smoke Handle multiple windows in Playwright', async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
 
   await page.goto('https://testautomationpractice.blogspot.com/');
+  const elm = await page.locator('.start').first(); // Locate the element to take a screenshot of
+  //await elm.screenshot({ path: 'screenshot.png' }); // Take a screenshot for verification
+  //compare this with the screenshot in the browser
+  await elm.screenshot({ path: 'screenshot.png' }); // Take a screenshot for verification
+  expect(elm).toHaveScreenshot('screenshot.png'); // Verify the screenshot
 
   // Click on a link that opens a new tab
   const [newPage] = await Promise.all([
@@ -17,6 +22,7 @@ test.only('Handle multiple windows in Playwright', async ({ browser }) => {
 
   await newPage.close(); // Close the new tab
   await page.close(); // Close the original tab
+ 
 });
 
 test('Switch between multiple tabs', async ({ browser }) => {

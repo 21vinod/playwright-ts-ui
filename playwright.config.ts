@@ -4,14 +4,14 @@ import type { TestOptions } from './test-options';
 require('dotenv').config();
 
 export default defineConfig<TestOptions>({
-  timeout: 40000,
+  // timeout: 40000,
   // globalTimeout: 60000,
-  expect:{
-    timeout: 2000,
-    toMatchSnapshot: {maxDiffPixels: 50}
-  },
+  // expect:{
+  //   timeout: 2000,
+  //   toMatchSnapshot: {maxDiffPixels: 50}
+  // },
 
-  fullyParallel:true,
+  fullyParallel: true,
   //retries: 1,
   reporter: [
     // ['json', {outputFile: 'test-results/jsonReport.json'}],
@@ -22,17 +22,18 @@ export default defineConfig<TestOptions>({
 
   use: {
     globalsQaURL: 'https://www.globalsqa.com/demo-site/draganddrop/',
+    viewport: { width: 1920, height: 1080 },
     baseURL: process.env.DEV === '1' ? 'http://localhost:4201/'
-          : process.env.STAGING == '1' ? 'http://localhost:4202/'
-          : 'http://localhost:4200/',
+      : process.env.STAGING == '1' ? 'http://localhost:4202/'
+        : 'http://localhost:4200/',
 
-    trace: 'on-first-retry',
-    actionTimeout: 20000,
-    navigationTimeout: 25000,
-    video: {
-      mode: 'off',
-      size: {width: 1920, height: 1080}
-    }
+    // trace: 'on-first-retry',
+    // actionTimeout: 20000,
+    // navigationTimeout: 25000,
+    // video: {
+    //   mode: 'off',
+    //   size: {width: 1920, height: 1080}
+    // }
   },
 
   projects: [
@@ -45,8 +46,9 @@ export default defineConfig<TestOptions>({
     // },
     {
       name: 'chromium',
-      use: { 
-        ...devices['Desktop Chrome'],}
+      use: {
+        ...devices['Desktop Chrome'],
+      }
       //   baseURL: 'http://localhost:4200/'
       //  },
       //  fullyParallel:true
@@ -54,18 +56,18 @@ export default defineConfig<TestOptions>({
     {
       name: 'firefox',
       use: {
-         browserName: 'firefox',
-         video: {
+        browserName: 'firefox',
+        video: {
           mode: 'off',
-          size: {width: 1920, height: 1080}
+          size: { width: 1920, height: 1080 }
         }
-        }
+      }
     },
     {
       name: 'pageObjectFullScreen',
       testMatch: 'usePageObjects.spec.ts',
       use: {
-        viewport: {width: 1920, height: 1080}
+        viewport: { width: 1920, height: 1080 }
       }
     },
     {

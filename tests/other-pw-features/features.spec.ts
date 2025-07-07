@@ -21,6 +21,7 @@ test('Save authentication state', async ({ browser }) => {
     await page.fill('#username', 'testuser');
     await page.fill('#password', 'password123');
     await page.click('#login-button');
+    const test = await page.locator('#login-success').textContent
   
     await context.storageState({ path: 'auth.json' });
   });

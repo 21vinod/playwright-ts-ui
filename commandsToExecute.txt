@@ -1,0 +1,1 @@
+give me commands to install playwright and typescript
